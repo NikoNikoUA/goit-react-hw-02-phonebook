@@ -17,23 +17,42 @@ state = {
   filter: '',
   
   }
+
+  onAddingContact = (name, number) => {
+    const contact = {
+      name,
+      number,
+      id: nanoid(),
+    }
+    this.setState(prevState => {
+      return {
+        contacts: [...prevState.contacts, contact],
+      };
+    });
+  };
+
+  onRemoveContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+    }))
+  }
   
   onSubmitHandler = data => {
     console.log(data);
   }
-  
+
+    
   render() {
-  const { id, name, number } = this.state.contacts;
-  return (
+   return (
     <div className={css.container}>
       <div className={css.formContainer}>
 <h1 className={css.mainHeading}>Phonebook</h1>
-        <ContactForm onSubmit={ this.onSubmitHandler} />
+         <ContactForm onSubmit={this.onSubmitHandler} onClick={ this.onAddingContact} />
         </div>
 
   <h2 className={css.contactsHeating}>Contacts</h2>
   <Filter />
-      <ContactList contacts={ this.state.contacts} />
+      <ContactList contacts={this.state.contacts} onRemoveContact={this.onRemoveContact} />
     </div>
   )
 }
