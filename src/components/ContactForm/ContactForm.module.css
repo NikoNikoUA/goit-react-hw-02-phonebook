@@ -1,0 +1,25 @@
+.form {
+}
+
+.labelName {
+}
+
+.inputName {
+  display: block;
+}
+
+.btnAddContact {
+  min-width: 70px;
+  height: 50px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  padding: 8px;
+}
+
+.labelTel {
+}
+
+.inputTel {
+  display: block;
+}
