@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import css from './ContactList.module.css';
 import { ContactListItem } from '../../components/ContactListItem/ContactListItem';
 
