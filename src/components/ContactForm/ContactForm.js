@@ -50,11 +50,7 @@ class ContactForm extends Component {
             onChange={this.onInputChange}
           />
         </label>
-        <button
-          className={css.btnAddContact}
-          type="submit"
-          onClick={this.onAddingContact}
-        >
+        <button className={css.btnAddContact} type="submit">
           Add contact
         </button>
       </form>

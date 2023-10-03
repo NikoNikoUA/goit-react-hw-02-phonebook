@@ -18,10 +18,17 @@ state = {
   
   }
 
-  onAddingContact = (name, number) => {
+  onRemoveContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+    }))
+  }
+  
+  onAddingContact = (data) => {
+    console.log(data);
     const contact = {
-      name,
-      number,
+      name: data.name,
+      number: data.number,
       id: nanoid(),
     }
     this.setState(prevState => {
@@ -29,16 +36,6 @@ state = {
         contacts: [...prevState.contacts, contact],
       };
     });
-  };
-
-  onRemoveContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId)
-    }))
-  }
-  
-  onSubmitHandler = data => {
-    console.log(data);
   }
 
     
@@ -47,7 +44,7 @@ state = {
     <div className={css.container}>
       <div className={css.formContainer}>
 <h1 className={css.mainHeading}>Phonebook</h1>
-         <ContactForm onSubmit={this.onSubmitHandler} onClick={ this.onAddingContact} />
+         <ContactForm onSubmit={this.onAddingContact} />
         </div>
 
   <h2 className={css.contactsHeating}>Contacts</h2>
