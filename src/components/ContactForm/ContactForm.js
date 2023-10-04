@@ -37,6 +37,8 @@ class ContactForm extends Component {
             required
             value={this.state.name}
             onChange={this.onInputChange}
+            placeholder="Enter name..."
+            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           />
         </label>
         <label className={css.labelTel}>
@@ -48,6 +50,8 @@ class ContactForm extends Component {
             required
             value={this.state.number}
             onChange={this.onInputChange}
+            placeholder="Enter number..."
+            pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
           />
         </label>
         <button className={css.btnAddContact} type="submit">
