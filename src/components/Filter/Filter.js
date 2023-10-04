@@ -1,10 +1,17 @@
 import css from './Filter.module.css';
 
-export const Filter = () => {
+export const Filter = ({ value, onChange }) => {
   return (
     <>
-      <h3 className={css.filterHeading}>Find contacts by name</h3>
-      <input className={css.inputFilter} type="text"></input>
+      <label className={css.labelFilter}>
+        Find contacts by name
+        <input
+          className={css.inputFilter}
+          type="text"
+          value={value}
+          onChange={onChange}
+        ></input>
+      </label>
     </>
   );
 };

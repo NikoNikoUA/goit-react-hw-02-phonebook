@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { nanoid } from 'nanoid'
 import css from './App.module.css'
 
@@ -18,28 +19,55 @@ state = {
   
   }
 
-  onRemoveContact = contactId => {
-    this.setState(prevState => ({
+  onRemoveContact = (contactId) => {
+     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId)
     }))
+    Notify.success('The contact has been successfully removed',
+        {
+        width: '100%',
+        borderRadius: '10px',
+        position: 'top',
+      });
   }
   
-  onAddingContact = (data) => {
-    console.log(data);
+  onAddingContact = ({name, number}) => {
+    console.log({name, number});
     const contact = {
-      name: data.name,
-      number: data.number,
+      name,
+      number,
       id: nanoid(),
     }
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, contact],
       };
-    });
+    } );
+    Notify.success(`${name} has been successfully added to your contacts`,
+        {
+        width: '100%',
+        borderRadius: '10px',
+        position: 'top',
+      });
+   }
+
+  onFilterChange = event => {
+    this.setState({ filter: event.currentTarget.value })
   }
 
+  onFilteringContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase()
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+
+  }
     
   render() {
+
+    const { filter } = this.state;
+  
+    const filteredContacts = this.onFilteringContacts();
+
    return (
     <div className={css.container}>
       <div className={css.formContainer}>
@@ -48,8 +76,8 @@ state = {
         </div>
 
   <h2 className={css.contactsHeating}>Contacts</h2>
-  <Filter />
-      <ContactList contacts={this.state.contacts} onRemoveContact={this.onRemoveContact} />
+       <Filter value={filter} onChange={ this.onFilterChange} />
+      <ContactList contacts={filteredContacts} onRemoveContact={this.onRemoveContact} />
     </div>
   )
 }

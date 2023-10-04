@@ -8,6 +8,7 @@ export const ContactList = ({ contacts, onRemoveContact }) => {
         return (
           <ContactListItem
             key={id}
+            id={id}
             name={name}
             number={number}
             onRemoveContact={onRemoveContact}
