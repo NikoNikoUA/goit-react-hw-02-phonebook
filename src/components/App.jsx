@@ -5,7 +5,16 @@ import css from './App.module.css'
 
 import ContactForm from '../components/ContactForm/ContactForm'
 import { Filter } from '../components/Filter/Filter'
-import {ContactList} from '../components/ContactList/ContactList'
+import { ContactList } from '../components/ContactList/ContactList'
+
+Notify.init({
+  borderRadius: '10px',
+  position: 'top',
+  width: '100%',
+  timeout: 4000,
+  clickToClose: true,
+  cssAnimationStyle: 'zoom',
+});
 
 class App extends Component {
 state = {
@@ -23,34 +32,32 @@ state = {
      this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId)
     }))
-    Notify.success('The contact has been successfully removed',
-        {
-        width: '100%',
-        borderRadius: '10px',
-        position: 'top',
-      });
+    Notify.success('The contact has been successfully removed');
   }
   
-  onAddingContact = ({name, number}) => {
+  onAddingContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    if (contacts.some(contact => contact.name === name)) {
+        return Notify.info(`${name} is already among your contacts`);
+    }
+
     console.log({name, number});
     const contact = {
       name,
       number,
       id: nanoid(),
     }
+
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, contact],
       };
     } );
-    Notify.success(`${name} has been successfully added to your contacts`,
-        {
-        width: '100%',
-        borderRadius: '10px',
-        position: 'top',
-      });
-   }
+    Notify.success(`${name} has been successfully added to your contacts`);
 
+      
+  }
+  
   onFilterChange = event => {
     this.setState({ filter: event.currentTarget.value })
   }
@@ -64,7 +71,7 @@ state = {
     
   render() {
 
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
   
     const filteredContacts = this.onFilteringContacts();
 
@@ -77,7 +84,7 @@ state = {
 
   <h2 className={css.contactsHeating}>Contacts</h2>
        <Filter value={filter} onChange={ this.onFilterChange} />
-      <ContactList contacts={filteredContacts} onRemoveContact={this.onRemoveContact} />
+      {contacts.length ? (<ContactList contacts={filteredContacts} onRemoveContact={this.onRemoveContact} />) : (<p className={css.noContactsText}>There are no contacts in your phoneboook</p>)}
     </div>
   )
 }
