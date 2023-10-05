@@ -38,20 +38,20 @@
   left: -50px;
 
   box-shadow: 2px 2px 4px white;
-  background-color: rgb(64, 64, 239);
+  background-color: rgb(107, 107, 239);
   border: none;
   border-radius: 8px;
 }
 
 .statisticsContainer {
   position: absolute;
-  background-color: rgb(64, 64, 239);
+  background-color: rgb(107, 107, 239);
   top: 250px;
   right: -50px;
   min-width: 300px;
   border-radius: 8px;
   box-shadow: 0px 0px 8px white;
-  padding: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   margin-left: auto;
