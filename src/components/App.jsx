@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { nanoid } from 'nanoid'
 import css from './App.module.css'
+import { GiRotaryPhone} from 'react-icons/gi'
 
 import ContactForm from '../components/ContactForm/ContactForm'
 import { Filter } from '../components/Filter/Filter'
@@ -78,7 +79,7 @@ state = {
    return (
     <div className={css.container}>
       <div className={css.formContainer}>
-<h1 className={css.mainHeading}>Phonebook</h1>
+         <h1 className={css.mainHeading}>Phonebook <GiRotaryPhone className={ css.icon} /></h1>
          <ContactForm onSubmit={this.onAddingContact} />
         </div>
 <div className={css.statisticsContainer}>

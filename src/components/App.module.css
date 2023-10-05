@@ -2,12 +2,13 @@
   width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid black;
-  padding: 20px;
+  width: 500px;
+  height: 500px;
   margin-top: 80px;
   position: relative;
   background-color: rgb(64, 64, 239);
@@ -33,7 +34,7 @@
   padding: 40px;
 
   position: absolute;
-  top: -30px;
+  top: -50px;
   left: -50px;
 
   box-shadow: 2px 2px 4px white;
@@ -43,11 +44,14 @@
 }
 
 .statisticsContainer {
-  width: 300px;
-  margin-top: 240px;
+  position: absolute;
+  background-color: rgb(64, 64, 239);
+  top: 250px;
+  right: -50px;
+  min-width: 300px;
   border-radius: 8px;
-  box-shadow: 0 0 4px white;
-  padding: 10px;
+  box-shadow: 0px 0px 8px white;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -55,14 +59,29 @@
   gap: 15px;
 }
 
-.mainHeading,
+.mainHeading {
+  margin: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgb(145, 233, 123);
+}
 .contactsHeading {
   margin: 0;
   font-weight: bold;
+  color: rgb(145, 233, 123);
 }
 
 .noContactsText {
   font-size: 14px;
   text-align: center;
   font-weight: bold;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
