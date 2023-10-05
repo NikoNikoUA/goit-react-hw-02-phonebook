@@ -81,11 +81,12 @@ state = {
 <h1 className={css.mainHeading}>Phonebook</h1>
          <ContactForm onSubmit={this.onAddingContact} />
         </div>
-
-  <h2 className={css.contactsHeating}>Contacts</h2>
+<div className={css.statisticsContainer}>
+  <h2 className={css.contactsHeading}>Contacts</h2>
        <Filter value={filter} onChange={ this.onFilterChange} />
       {contacts.length ? (<ContactList contacts={filteredContacts} onRemoveContact={this.onRemoveContact} />) : (<p className={css.noContactsText}>There are no contacts in your phoneboook</p>)}
     </div>
+       </div>
   )
 }
 }
