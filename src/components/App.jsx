@@ -38,7 +38,7 @@ state = {
   
   onAddingContact = ({ name, number }) => {
     const { contacts } = this.state;
-    if (contacts.some(contact => contact.name === name)) {
+    if (contacts.some(contact => contact.name.toLowerCase() === name.toLoweCase())) {
         return Notify.info(`${name} is already among your contacts`);
     }
 
